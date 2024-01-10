@@ -28,5 +28,11 @@ jobs:
       id-token: write
     steps:
       - uses: actions/checkout@v2
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18.x
       - name: "Something Something"
         run: echo "${{ secrets.NOT_A_SECRET }}" && echo "${{ secrets.DOESNT_EXIST }}"
+      - name: Run a test
+        run: npm test

@@ -1,0 +1,11 @@
+{
+  "name": "test-gh-action-pr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node console-log.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
