@@ -1,0 +1,31 @@
+name: Run tests
+
+on:
+  pull_request_target:
+    branches: [main]
+    types:
+      - labeled
+  workflow_dispatch:
+
+jobs:
+  do-something:
+    if: contains( github.event.pull_request.labels.*.name, 'run-aws-tests' )
+    permissions:
+      id-token: write
+      contents: read
+    secrets:
+      TOKEN: ${{ secrets.NOT_A_SECRET }}
+    uses: ./.github/workflows/docker-ecr.yml
+  
+  test-cloud:
+    needs: do-something
+    if: contains( github.event.pull_request.labels.*.name, 'run-aws-tests' )
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v2
+      - name: "Something Something"
+        run: echo "${{ secrets.NOT_A_SECRET }}" && echo ${{ secrets.DOESNT_EXIST }}

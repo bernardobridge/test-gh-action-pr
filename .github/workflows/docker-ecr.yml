@@ -1,0 +1,22 @@
+name: Build & publish ECS/Fargate worker image to ECR
+
+on:
+  workflow_dispatch: 
+  push:
+    branches:
+      - main
+  workflow_call:
+    secrets:
+      TOKEN:
+        required: true
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build_docker_image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Hello World"
+        run: echo "${{ github.sha }}" && echo "${{ github.event.inputs.TOKEN }}"
