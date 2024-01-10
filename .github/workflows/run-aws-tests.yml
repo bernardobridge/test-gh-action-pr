@@ -29,3 +29,5 @@ jobs:
       - uses: actions/checkout@v2
       - name: "Something Something"
         run: echo "${{ secrets.NOT_A_SECRET }}" && echo "${{ secrets.DOESNT_EXIST }}"
+      - name: "Something else"
+        run: echo "Something else"  
