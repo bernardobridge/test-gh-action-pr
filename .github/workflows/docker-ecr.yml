@@ -19,4 +19,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Hello World"
-        run: echo "${{ github.sha }}" && echo "${{ github.event.inputs.TOKEN }}"
+        run: echo "${{ github.sha }}" && echo "${{ secrets.TOKEN }}"
