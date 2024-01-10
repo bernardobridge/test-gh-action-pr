@@ -6,13 +6,13 @@ on:
 #     types:
 #       - labeled
 #       - synchronize
-  pull_request:
-    branches: [main]
-    types:
-      - labeled
-      - synchronize
-      - opened
-      - reopened
+#   pull_request:
+#     branches: [main]
+#     types:
+#       - labeled
+#       - synchronize
+#       - opened
+#       - reopened
   workflow_dispatch:
 
 jobs:
