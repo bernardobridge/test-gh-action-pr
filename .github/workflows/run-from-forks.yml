@@ -25,7 +25,7 @@ jobs:
       - name: Block non-collaborators or owners
         if: ${{ github.event.pull_request.author_association != 'COLLABORATOR' && github.event.pull_request.author_association != 'OWNER' }}
         run: |
-          echo "Event not triggered by a collaborator."
+          echo "Event not triggered by a collaborator (${{ github.event.pull_request.author_association }}). Triggering actor was: ${{ github.triggering_actor }}"
           exit 1
       - name: Checkout code
         uses: actions/checkout@v3
