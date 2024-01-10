@@ -28,4 +28,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: "Something Something"
-        run: echo "${{ secrets.NOT_A_SECRET }}" && echo ${{ secrets.DOESNT_EXIST }}
+        run: echo "${{ secrets.NOT_A_SECRET }}" && echo "${{ secrets.DOESNT_EXIST }}"
