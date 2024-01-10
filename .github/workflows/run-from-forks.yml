@@ -1,6 +1,7 @@
 name: Run tests from fork
 on:
   pull_request_target:
+    branches: [main]
     types: [opened, synchronize, labeled, reopened]
 
 jobs:
