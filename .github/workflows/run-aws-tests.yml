@@ -1,11 +1,18 @@
 name: Run tests
 
 on:
-  pull_request_target:
+#   pull_request_target:
+#     branches: [main]
+#     types:
+#       - labeled
+#       - synchronize
+  pull_request:
     branches: [main]
     types:
       - labeled
       - synchronize
+      - opened
+      - reopened
   workflow_dispatch:
 
 jobs:
