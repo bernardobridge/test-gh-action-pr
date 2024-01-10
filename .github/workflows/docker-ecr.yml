@@ -6,6 +6,11 @@ on:
     branches:
       - main
   workflow_call:
+    inputs:
+      ref:
+        description: 'Branch ref to checkout'
+        type: string
+        default: null
     secrets:
       TOKEN:
         required: true
@@ -20,8 +25,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
+          ref: ${{ github.event.inputs.ref }}
           fetch-depth: 0
-          
+      - name: Show git ref
+        run: |
+            echo ${{ github.ref }}
+            echo ${{ github.event.pull_request.head.sha }}
+            echo ${{ github.sha }}
+
       - name: "Hello World"
         run: echo "${{ github.sha }}" && echo "${{ secrets.TOKEN }}"
       - name: Use Node.js

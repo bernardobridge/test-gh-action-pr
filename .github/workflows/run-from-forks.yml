@@ -25,21 +25,25 @@ jobs:
 
   do-something:
     if: contains( github.event.pull_request.labels.*.name, 'run-aws-tests' )
+    needs: is-collaborator
     permissions:
       id-token: write
       contents: read
     secrets:
       TOKEN: ${{ secrets.NOT_A_SECRET }}
+    with:
+      ref: ${{ github.event.pull_request.head.sha }}
     uses: ./.github/workflows/docker-ecr.yml
 
   demo:
     runs-on: ubuntu-latest
     if: contains( github.event.pull_request.labels.*.name, 'run-aws-tests' )
+    needs: do-something
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          ref: ${{  github.event.pull_request.head.sha }} # This is dangerous without the first access check
+          ref: ${{ github.event.pull_request.head.sha }} # This is dangerous without the first access check
       - name: Run tests
         run: |
           if [[ "x${{ secrets.NOT_A_SECRET }}" == "xval" ]]; then
