@@ -25,7 +25,7 @@ jobs:
           exit 1
 
   do-something:
-    if: ${{ github.event_name == 'workflow_dispatch' || contains( github.event.pull_request.labels.*.name, 'run-aws-tests' ) }}
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.pull_request.labels.*.name, 'run-aws-tests')
     needs: is-collaborator
     permissions:
       id-token: write
@@ -38,7 +38,7 @@ jobs:
 
   demo:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'workflow_dispatch' || contains( github.event.pull_request.labels.*.name, 'run-aws-tests' ) }}
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.pull_request.labels.*.name, 'run-aws-tests')
     needs: do-something
     steps:
       - name: Checkout code
